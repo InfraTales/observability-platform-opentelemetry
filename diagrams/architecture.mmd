@@ -1,0 +1,44 @@
+```mermaid
+graph TD
+    subgraph Applications["Microservices (100+)"]
+        App1[Service A]
+        App2[Service B]
+        App3[Service C]
+    end
+
+    subgraph Collection["OTEL Collection Layer"]
+        Collector[OTEL Collector Lambda]
+        Agent[OTEL Sidecar Agent]
+    end
+
+    subgraph Processing["Processing Layer"]
+        Firehose[Kinesis Firehose]
+        Transform[Transform Lambda]
+    end
+
+    subgraph Storage["Storage & Analytics"]
+        CWLogs[CloudWatch Logs]
+        XRay[AWS X-Ray]
+        OpenSearch[OpenSearch Service]
+        S3[S3 Archives]
+    end
+
+    subgraph Visualization["Dashboards"]
+        Dashboards[CloudWatch Dashboards]
+        Kibana[OpenSearch Dashboards]
+    end
+
+    App1 --> Agent
+    App2 --> Agent
+    App3 --> Agent
+    Agent --> Collector
+    Collector --> Firehose
+    Collector --> XRay
+    Firehose --> Transform
+    Transform --> OpenSearch
+    Transform --> CWLogs
+    OpenSearch --> S3
+    CWLogs --> Dashboards
+    OpenSearch --> Kibana
+    XRay --> Dashboards
+```

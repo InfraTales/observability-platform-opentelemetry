@@ -1,0 +1,44 @@
+```mermaid
+graph LR
+    subgraph Sources["Telemetry Sources"]
+        Traces[Distributed Traces]
+        Logs[Application Logs]
+        Metrics[Custom Metrics]
+    end
+
+    subgraph Collection["Collection"]
+        OTEL[OTEL Collector]
+    end
+
+    subgraph Processing["Processing"]
+        Filter[Filter & Transform]
+        Enrich[Enrich & Tag]
+    end
+
+    subgraph Storage["Storage"]
+        XRay[X-Ray Service]
+        OS[OpenSearch]
+        CW[CloudWatch Logs]
+        S3[S3 Archive]
+    end
+
+    subgraph Analytics["Analytics & Alerting"]
+        Dashboards[Dashboards]
+        Alerts[CloudWatch Alarms]
+        Search[Log Search]
+    end
+
+    Traces --> OTEL
+    Logs --> OTEL
+    Metrics --> OTEL
+    OTEL --> Filter
+    Filter --> Enrich
+    Enrich --> XRay
+    Enrich --> OS
+    Enrich --> CW
+    OS --> S3
+    XRay --> Dashboards
+    OS --> Search
+    CW --> Alerts
+    CW --> Dashboards
+```

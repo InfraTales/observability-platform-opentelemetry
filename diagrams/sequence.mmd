@@ -1,0 +1,24 @@
+```mermaid
+sequenceDiagram
+    participant App as Microservice
+    participant Agent as OTEL Agent
+    participant Collector as OTEL Collector
+    participant Firehose as Kinesis Firehose
+    participant XRay as AWS X-Ray
+    participant OS as OpenSearch
+    participant CW as CloudWatch
+
+    App->>Agent: Send telemetry (traces, logs, metrics)
+    Agent->>Collector: Batch & forward
+    
+    par Trace Processing
+        Collector->>XRay: Send traces
+        XRay-->>CW: Trace metrics
+    and Log Processing
+        Collector->>Firehose: Send logs
+        Firehose->>OS: Index logs
+    end
+    
+    OS-->>CW: Cluster metrics
+    CW->>CW: Trigger alarms if needed
+```

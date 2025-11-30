@@ -369,25 +369,26 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines
 
 ## 👤 Author
 
-**Rahul Ladumor**
+**Rahul Ladumor** - Founder of InfraTales
+
 - 🌐 Portfolio: [rahulladumor.in](https://www.rahulladumor.in)
+- ☁️ Blog: [acloudwithrahul.in](https://www.acloudwithrahul.in)
 - 💼 GitHub: [@rahulladumor](https://github.com/rahulladumor)
+- 🏢 Organization: [InfraTales](https://github.com/InfraTales)
 - 📧 Email: rahul.ladumor@infratales.com
-- 💬 LinkedIn: [www.linkedin.com/in/rahulladumor](https://www.linkedin.com/in/rahulladumor)
+- 💬 LinkedIn: [linkedin.com/in/rahulladumor](https://www.linkedin.com/in/rahulladumor)
 
 ---
 
-<p align="center">
-  <strong>⭐ Star this repository if you find it helpful!</strong>
-</p>
-
-<p align="center">
-  Made with ❤️ by Rahul Ladumor
-</p>
-
 <div align="center">
-  <a href="https://infratales.com">Website</a> •
-  <a href="https://infratales.com/projects">Projects</a> •
-  <a href="https://infratales.com/premium">Premium</a> •
-  <a href="https://infratales.com/newsletter">Newsletter</a>
+
+**⭐ Star this repository if you find it helpful!**
+
+**Built with ❤️ by [InfraTales](https://github.com/InfraTales)**
+
+<a href="https://infratales.com">Website</a> •
+<a href="https://infratales.com/projects">Projects</a> •
+<a href="https://infratales.com/premium">Premium</a> •
+<a href="https://infratales.com/newsletter">Newsletter</a>
+
 </div>

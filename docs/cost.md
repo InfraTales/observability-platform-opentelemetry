@@ -36,4 +36,4 @@ For dev/staging (fewer services, lower retention):
 
 ## Related Documentation
 
-See `ARCHITECTURE.md` for service details and `DEPLOYMENT.md` for environment-specific configurations.
+See the project README for architecture details.md` for environment-specific configurations.

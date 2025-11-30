@@ -72,4 +72,4 @@ Common issues and resolutions for the **Observability Platform with OpenTelemetr
 - Check OpenSearch storage – implement lifecycle policies
 - Enable log sampling for high-traffic services
 
-> For architecture details, see `ARCHITECTURE.md`.
+> For architecture details, see the project README.

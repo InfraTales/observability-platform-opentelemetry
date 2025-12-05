@@ -1,74 +1,70 @@
-# Runbook
+# Operations Runbook
 
-Operational guide for deploying, operating, and maintaining the **Observability Platform with OpenTelemetry**.
+## Overview
+This runbook provides operational procedures for managing and maintaining this infrastructure.
 
-## 1. Deployment
+## Prerequisites
+- AWS CLI configured
+- Terraform/CDK/Pulumi installed
+- Appropriate IAM permissions
 
-### Prerequisites
+## Common Operations
 
-- AWS CLI configured with appropriate credentials
-- Node.js 18+ and npm installed
-- AWS CDK CLI installed (`npm install -g aws-cdk`)
-
-### Deploy Steps
-
+### Deployment
 ```bash
-# Install dependencies
-npm install
+# Development
+./scripts/deploy.sh dev
 
-# Bootstrap CDK (first time only)
-cdk bootstrap
-
-# Deploy to dev
-cdk deploy --context environment=dev
-
-# Deploy to production
-cdk deploy --context environment=prod
+# Production
+./scripts/deploy.sh prod
 ```
 
-## 2. Scaling
+### Monitoring
+- CloudWatch Dashboard: Check AWS Console
+- Alerts: Configured via SNS
+- Logs: CloudWatch Logs
 
-### Horizontal Scaling
+### Troubleshooting
 
-- OpenSearch: Add data nodes via CDK context variables
-- Lambda collectors: Automatically scales with traffic
-- Kinesis: Increase shard count for higher throughput
+#### Issue: Deployment Fails
+**Symptoms**: Terraform/CDK apply fails
+**Resolution**:
+1. Check AWS credentials
+2. Verify IAM permissions
+3. Review error logs
+4. Check resource quotas
 
-### Vertical Scaling
+#### Issue: High Costs
+**Symptoms**: Unexpected AWS charges
+**Resolution**:
+1. Review Cost Explorer
+2. Check for unused resources
+3. Verify auto-scaling policies
+4. Review instance types
 
-- OpenSearch: Upgrade instance types for complex queries
-- Lambda: Increase memory allocation for faster processing
+### Maintenance Windows
+- Preferred: Sunday 02:00-06:00 UTC
+- Avoid: Business hours (09:00-17:00 local time)
 
-## 3. Monitoring
+### Escalation
+1. Team Lead
+2. DevOps Manager
+3. On-call Engineer
 
-### Key Metrics to Watch
+## Emergency Procedures
 
-- **Log ingestion rate**: CloudWatch Logs `IncomingBytes`
-- **Trace latency**: X-Ray service map latency percentiles
-- **OpenSearch health**: Cluster status, JVM memory pressure
-- **Lambda errors**: Invocation errors and duration
-
-### Dashboards
-
-Pre-configured CloudWatch dashboards are created during deployment for:
-
-- Service health overview
-- Log ingestion metrics
-- Trace analytics
-
-## 4. Maintenance
-
-### Regular Tasks
-
-- Review and rotate KMS keys annually
-- Update OpenSearch to latest version quarterly
-- Review IAM policies for least privilege
-- Clean up unused log groups
-
-### Teardown
-
+### Rollback
 ```bash
-cdk destroy --context environment=dev
+# Terraform
+terraform apply -var-file=previous.tfvars
+
+# CDK
+cdk deploy --previous-version
+
+# Pulumi
+pulumi stack select previous
+pulumi up
 ```
 
-> For troubleshooting common issues, see `docs/troubleshooting.md`.
+### Disaster Recovery
+See [DISASTER_RECOVERY.md](DISASTER_RECOVERY.md)
